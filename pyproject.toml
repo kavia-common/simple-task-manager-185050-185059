@@ -1,0 +1,56 @@
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+include = '\.pyi?$'
+extend-exclude = [
+    "venv",
+    ".venv",
+    "migrations",
+]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+known_first_party = ["todo_backend"]
+skip = ["venv", ".venv", "migrations"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = ["venv", ".venv", "migrations", ".git", "__pycache__"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+exclude = '(venv|.venv|migrations|__pycache__)'
+
+[tool.bandit]
+skips = ["B101"]
+exclude = ["venv", ".venv", "migrations", "tests"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+extend-exclude = ["venv", ".venv", "migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E203", "W503"]
+
+[tool.coverage.run]
+branch = true
+source = ["simple-task-manager-185050-185059"]
+omit = ["*/migrations/*", "*/venv/*", "*/.venv/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
